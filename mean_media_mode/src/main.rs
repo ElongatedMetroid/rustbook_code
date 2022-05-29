@@ -7,7 +7,7 @@ fn main() {
 
     println!("median of: {:?} is {}", nums, median(&nums));
 
-    let nums = vec![1, 5, 6, 1, 7, 8, 5, 6, 7, 8, 9, 7, 1];
+    let nums = vec![1, 1, 5, 6, 1, 7, 8, 5, 6, 7, 8, 9, 7, 1];
     println!("{}", mode(&nums));
 }
 
@@ -29,16 +29,13 @@ fn median(nums: &Vec<f64>) -> f64 {
 
     nums.sort_by(|a, b| a.partial_cmp(b).unwrap());
 
-    // length so we dont have to repeatidly call the len method (cache len)
-    let len = nums.len();
-
     // if is odd
-    if len % 2 == 1 {
+    if nums.len() % 2 == 1 {
         // (n + 1) / 2
-        nums.get(((len + 1) / 2) - 1).unwrap().to_owned()
+        nums.get(((nums.len() + 1) / 2) - 1).unwrap().to_owned()
     } else { // if is even
         // ((n/2) + (n/2) + 1) / 2
-        ((nums.get((len/2) - 1)).unwrap().to_owned() + (nums.get(((len/2) + 1) - 1)).unwrap().to_owned()) / 2.0
+        ((nums.get((nums.len()/2) - 1)).unwrap().to_owned() + (nums.get(((nums.len()/2) + 1) - 1)).unwrap().to_owned()) / 2.0
     }
 }
 
@@ -46,10 +43,13 @@ fn mode(nums: &Vec<isize>) -> isize {
     let mut map = HashMap::new();
 
     for num in nums.iter() {
-        let count = map.entry(num).or_insert(0);
-
-        *count += 1;
+        // or_insert returns a mutable reference to the value of the corresponding key
+        *map.entry(num).or_insert(0) += 1;
     }
 
-    
+    *map
+        .into_iter()
+        .max_by_key(|&(_, count)| count)
+        .map(|(val, _)| val)
+        .expect("Cannot compute the mode of zero numbers")
 }
