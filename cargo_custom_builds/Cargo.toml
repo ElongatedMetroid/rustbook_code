@@ -1,0 +1,12 @@
+[package]
+name = "cargo_custom_builds"
+version = "0.1.0"
+edition = "2021"
+
+# by default rust has two main profiles, dev and release
+# you can customize these profiles with
+[profile.dev]
+opt-level = 3
+
+[profile.release]
+opt-level = 0
