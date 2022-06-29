@@ -31,6 +31,6 @@ pub mod utils {
 
     /// Combines two primary colors in equal amounts
     pub fn mix(color1: PrimaryColor, color2: PrimaryColor) -> SecondaryColor {
-
+        SecondaryColor::Green
     }
 }

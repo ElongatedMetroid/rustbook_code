@@ -2,7 +2,18 @@
 name = "crates_and_documentation"
 version = "0.1.0"
 edition = "2021"
+authors = ["Nate <nate@nate.com>"]
+description = "a library to add one"
+# License identifyers can be found at https://spdx.org/licenses/
+license = "GPL-2.0-or-later"
+# To publish this crate you can use cargo publish,
+# but be careful a published crate cannot be removed
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+# To make prevent new projects from using your crate you can yank it
+# cargo yank --vers 0.1.0
+# The command above will yank version 0.1.0
+# To undo the above yank you can run
+# cargo yank --vers 0.1.0 --undo
+# A YANK DOES NOT DELETE THE CODE
 
 [dependencies]
