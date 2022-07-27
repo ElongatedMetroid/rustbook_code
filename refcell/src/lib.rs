@@ -44,6 +44,8 @@ mod tests {
         // trait does not take a mutable reference to self, it takes an immutable
         // reference. By putting the Vector of strings inside a RefCell means we
         // can modify sent_messages, by using the borrow_mut method
+        
+        // In other words, RefCell's allow for interior mutability
 
         // Borrowing rules still apply to RefCells! 
         // At any given time you can have either but not both of the following:
