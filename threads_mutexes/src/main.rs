@@ -47,6 +47,7 @@ fn main() {
         handles.push(handle);
     }
 
+    // Wait for all threads to finish
     for handle in handles {
         handle.join().unwrap();
     }
